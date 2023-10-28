@@ -7,6 +7,10 @@ import * as csurf from 'csurf';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  /**
+   * dtoを使うにはValidationPipeの記述が必要になる
+   * whitelist:trueにするとdtoに含まれないフィールドを省いてくれる
+   */
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
   app.enableCors({
     credentials: true,
