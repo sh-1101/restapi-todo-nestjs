@@ -3,7 +3,7 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "emial" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
     "hashedPassword" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -22,7 +22,7 @@ CREATE TABLE "Task" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_emial_key" ON "User"("emial");
+CREATE UNIQUE INDEX "User_emial_key" ON "User"("email");
 
 -- AddForeignKey
 ALTER TABLE "Task" ADD CONSTRAINT "Task_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
