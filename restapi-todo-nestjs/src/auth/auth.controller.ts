@@ -22,6 +22,11 @@ export class AuthController {
     return this.authService.signUp(dto);
   }
 
+  @Get('csrf')
+  getCsrfToken(@Req() req: Request): Csrf {
+    return { csrfToken: req.csrfToken() };
+  }
+
   @HttpCode(HttpStatus.OK) //デフォルトだとステータスコード201(create)になるため200に変更
   @Post('login')
   async login(

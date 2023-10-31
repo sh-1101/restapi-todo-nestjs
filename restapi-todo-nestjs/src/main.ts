@@ -17,6 +17,20 @@ async function bootstrap() {
     origin: ['http://localhost:3000'],
   });
   app.use(cookieParser());
-  await app.listen(3005);
+  app.use(
+    csurf({
+      //cookieの設定
+      cookie: {
+        httpOnly: true,
+        sameSite: 'none',
+        secure: false,
+      },
+      //ユーザーのリクエストからトークンを取り出す
+      value: (req: Request) => {
+        return req.header('csrf-token');
+      },
+    }),
+  );
+  await app.listen(process.env.PORT || 3005); //本番に乗せた時はPORTを使用、なければ3005
 }
 bootstrap();
