@@ -44,7 +44,7 @@ export class AuthController {
 
     res.cookie('access_token', jwt.accessToken, {
       httpOnly: true,
-      secure: false, //Secure:true → httpsで暗号化された通信のみcookie使用可能
+      secure: true, //Secure:true → httpsで暗号化された通信のみcookie使用可能
       sameSite: 'none',
       path: '/',
     });
@@ -59,7 +59,7 @@ export class AuthController {
   logout(@Req() req: Request, @Res({ passthrough: true }) res: Response): Msg {
     res.cookie('access_token', '', {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: 'none',
       path: '/',
     });

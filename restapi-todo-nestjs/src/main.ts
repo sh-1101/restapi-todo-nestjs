@@ -23,7 +23,7 @@ async function bootstrap() {
       cookie: {
         httpOnly: true,
         sameSite: 'none',
-        secure: false,
+        secure: true,
       },
       //ユーザーのリクエストからトークンを取り出す
       value: (req: Request) => {
